@@ -1,0 +1,15 @@
+---
+- name: Running ansible on Windows Server
+  hosts: all
+  become: False
+  gather_facts: False
+  tasks:
+    - name: Run basic PowerShell script
+      ansible.windows.win_powershell:
+        script: |
+          hostname
+          echo "Hello World"
+          Get-Date
+          $Date = Get-Date -Format yyyy-MM-dd_HHmmss
+          New-Item -Path C:\Users\Administrator\Desktop\New-file-$Date.txt
+register: pwsh_result
