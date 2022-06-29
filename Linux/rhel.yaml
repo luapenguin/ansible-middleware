@@ -1,22 +1,24 @@
 ---
-- name: Jenkins Playbook execution on jenkins server
-  hosts: none
-  become: True
-  become_method: sudo
-  become_user: root
+- name: RockyLinux Servers Playbook Execution
+  hosts: all
+  ##become: True
+  ##become_method: sudo
+  ##become_user: root
   gather_facts: False
   vars:
-    ansible_python_interpreter: /usr/bin/python3.9
+    ansible_python_interpreter: /usr/bin/python3.6
   tasks:
     - name: Getting contents from /root/ home directory
       shell: |
+        whoami
         hostnamectl status
         cat /etc/os-release
         touch /root/redhat-$(date +%Y-%m-%d-%H%M).txt
         ls -ltr
         date
-args:
+      args:
         warn: False
       register: display_files
     - debug:
         var: display_files.stdout_lines
+
