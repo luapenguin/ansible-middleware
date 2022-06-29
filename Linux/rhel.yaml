@@ -1,5 +1,5 @@
 ---
-- name: RockyLinux Servers Playbook Execution
+- name: Red Hat Enterprise Linux Servers Playbook Execution
   hosts: all
   ##become: True
   ##become_method: sudo
