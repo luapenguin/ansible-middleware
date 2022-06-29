@@ -11,6 +11,7 @@
     - name: Getting contents from /root/ home directory
       shell: |
         hostnamectl status
+        cat /etc/os-release
         touch /root/redhat-$(date +%Y-%m-%d-%H%M).txt
         ls -ltr
         date
