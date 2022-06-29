@@ -1,6 +1,6 @@
 ---
 - name: Jenkins Playbook execution on jenkins server
-  hosts: none
+  ##hosts: none
   become: True
   become_method: sudo
   become_user: root
