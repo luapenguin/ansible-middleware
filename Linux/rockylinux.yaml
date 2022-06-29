@@ -1,15 +1,16 @@
 ---
 - name: Jenkins Playbook execution on jenkins server
   hosts: all
-  become: True
-  become_method: sudo
-  become_user: root
+  ##become: True
+  ##become_method: sudo
+  ##become_user: root
   gather_facts: False
   vars:
     ansible_python_interpreter: /usr/bin/python3.6
   tasks:
     - name: Getting contents from /root/ home directory
       shell: |
+        whoami
         hostnamectl status
         cat /etc/os-release
         touch /root/redhat-$(date +%Y-%m-%d-%H%M).txt
