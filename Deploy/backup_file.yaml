@@ -1,1 +1,14 @@
 ---
+- name: AlmaLinux Server Ansible Playbook Execution
+  hosts: all
+  gather_facts: False
+  vars:
+    ansible_python_interpreter: /usr/bin/python3.9
+  tasks:
+    - name: Backup Build
+      ansible.builtin.copy:
+        src: {{ source_directory_path }}
+        dest: {{ destination_directory_path }}
+        owner: admin
+        group: admin
+        mode: u=rwx,g=rx,o=rx
