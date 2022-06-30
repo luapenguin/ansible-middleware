@@ -16,4 +16,4 @@
         dest: "{{ destination_directory }}"
         mode: pull
       delegate_to: "{{ destination_server }}"
-      when: file_to_check.stat.exist is defined and file_to_check.stat.exist
+      when: file_to_check.stat.exists is defined and file_to_check.stat.exists
