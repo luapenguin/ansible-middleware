@@ -13,7 +13,7 @@
     - name: Task name
       debug:
         msg: "The file or file exists"
-      when: file_to_check.stat.exists
+      when: file_to_check.stat.exists is defined and file_to_check.stat.exists
 
     - name: Transfer file from ServerA to ServerB
       ansible.posix.synchronize:
