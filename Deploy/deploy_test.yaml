@@ -1,9 +1,6 @@
 ---
 - name: AlmaLinux Servers Playbook Execution
   hosts: all
-  ##become: True
-  ##become_method: sudo
-  ##become_user: root
   gather_facts: False
   vars:
     ansible_python_interpreter: /usr/bin/python3.9
