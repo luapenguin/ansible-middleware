@@ -7,8 +7,8 @@
   tasks:
    - name: Check if the file exists
      ansible.builtin.stat:
-        path: "{{ source_file }}"
-      register: file_to_check
+       path: "{{ source_file }}"
+     register: file_to_check
 
    - name: Task name
      debug:
