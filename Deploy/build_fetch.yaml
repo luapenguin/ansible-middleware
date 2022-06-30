@@ -6,7 +6,7 @@
     ansible_python_interpreter: /usr/bin/python3.9
   tasks:
    - name: Check if the directory exists
-      ansible.builtin.stat:
+      stat:
         path: "{{ source_file }}"
       register: file_to_check
 
