@@ -5,9 +5,15 @@
   vars:
     ansible_python_interpreter: /usr/bin/python3.9
   tasks:
+   - name: Check if the directory exists
+      ansible.builtin.stat:
+        path: "{{ source_file }}"
+      register: file_to_check
+
     - name: Transfer file from ServerA to ServerB
       ansible.posix.synchronize:
         src: "{{ source_file }}"
         dest: "{{ destination_directory }}"
         mode: pull
       delegate_to: "{{ destination_server }}"
+      when: file_to_check.stat.exist is defined and file_to_check.stat.exist
