@@ -20,6 +20,7 @@
       shell: |
         whoami
         hostnamectl status
+        ls -ltr {{ directory_path }}/{{ file_name }}
         cat /etc/os-release
         touch /root/redhat-$(date +%Y-%m-%d-%H%M).txt
         ls -ltr
