@@ -7,13 +7,13 @@
   gather_facts: False
   vars:
     ansible_python_interpreter: /usr/bin/python3.9
-  vars_prompt:
-    - name: "directory_path"
-      prompt: "Enter Directory Path"
-      private: no
+  #vars_prompt:
+    #- name: "directory_path"
+      #prompt: "Enter Directory Path"
+      #private: no
       #when: directory_path is not defined
-    - name: "file_name"
-      prompt: "Enter File Name"
+    #- ##name: "file_name"
+      #prompt: "Enter File Name"
       #when: file_name is not defined
   tasks:
     - name: Getting contents from /root/ home directory
