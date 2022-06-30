@@ -17,5 +17,5 @@
         owner: admin
         group: admin
         mode: u=rwx,g=rx,o=rx
-        when: dir_to_check.stat.isdir is defined and dir_to_check.stat.isdir
+      when: dir_to_check.stat.isdir is defined and dir_to_check.stat.isdir
       
