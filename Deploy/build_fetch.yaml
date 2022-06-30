@@ -8,7 +8,7 @@
     - name: Transfer file from ServerA to ServerB
       ansible.posix.synchronize:
         src: {{ source_directory }}
-        dest: {{ destination_directory }}/
+        dest: {{ destination_directory }}
         mode: pull
       delegate_to: {{ destination_server }}
       with_items:
