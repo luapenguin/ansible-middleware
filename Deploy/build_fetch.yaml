@@ -1,14 +1,9 @@
 ---
 - name: AlmaLinux Server Ansible Playbook Execution
   hosts: all
-  remote_user: "{{ destination_user }}"
-  become: yes
-  become_user: root
-  become_method: sudo
   gather_facts: False
   vars:
     ansible_python_interpreter: /usr/bin/python3.9
-    ansible_become_password: '{{ destination_user_password }}'
   tasks:
     - name: Check if the file exists
       ansible.builtin.stat:
@@ -26,4 +21,6 @@
         dest: "{{ destination_directory }}"
         mode: pull
       delegate_to: "{{ destination_server }}"
+      remote_user: "{{ destination_user }}"
+      ansible_ssh_pass: "{{ destination_user_password }}"
       when: file_to_check.stat.exists is defined and file_to_check.stat.exists
