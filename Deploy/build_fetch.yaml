@@ -5,15 +5,15 @@
   vars:
     ansible_python_interpreter: /usr/bin/python3.9
   tasks:
-   - name: Check if the file exists
-     ansible.builtin.stat:
-       path: "{{ source_file }}"
-     register: file_to_check
+    - name: Check if the file exists
+      ansible.builtin.stat:
+        path: "{{ source_file }}"
+      register: file_to_check
 
-   - name: Task name
-     debug:
-       msg: "The file or file exists"
-     when: file_to_check.stat.exists
+    - name: Task name
+      debug:
+        msg: "The file or file exists"
+      when: file_to_check.stat.exists
 
     - name: Transfer file from ServerA to ServerB
       ansible.posix.synchronize:
