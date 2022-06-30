@@ -6,9 +6,9 @@
     ansible_python_interpreter: /usr/bin/python3.9
   tasks:
     - name: Transfer file from ServerA to ServerB
-      synchronize:
-        src: "{{ source_directory_path }}"/"{{ file_name }}"
-        dest: "{{ destination_directory_path }}"/
+      ansible.posix.synchronize:
+        src: "{{ source_directory }}"/"{{ file_name }}"
+        dest: "{{ destination_directory }}"/
         mode: pull
       delegate_to: "{{ destination_server }}"
         
