@@ -5,12 +5,10 @@
   vars:
     ansible_python_interpreter: /usr/bin/python3.9
   tasks:
-    - name: Fetching {{ file_name }} file from {{ source_server }}
-      fetch:
-        src: {{ source_directory_path }}/{{ file_name }}
-        dest: {{ destination_directory_path }}/
-        flat: yes
-        fail_on_missing: no
-        validate_checksum: yes
-        
+    - name: Transfer file from ServerA to ServerB
+      synchronize:
+        src: "{{ source_directory_path }}"/"{{ file_name }}"
+        dest: "{{ destination_directory_path }}"/
+        mode: pull
+      delegate_to: "{{ destination_server }}"
         
