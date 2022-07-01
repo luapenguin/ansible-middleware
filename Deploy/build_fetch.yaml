@@ -15,19 +15,7 @@
         msg: "The file or file exists"
       when: file_to_check.stat.exists is defined and file_to_check.stat.exists
 
-    - name: Transfer file from ServerA to ServerB
-      hosts: "{{ destination_server }}"
-      remote_user: "{{ destination_user }}"
-      become: true
-      become_method: sudo
-      become_user: root
-      gather_facts: false
-      vars:
-        password: "{{ destination_user_password }}"
-        #ansible_sudo_pass: "{{ destination_user_password }}"
-      ansible.posix.synchronize:
+    - name: fetch log
+      ansible.builtin.fetch:
         src: "{{ source_file }}"
         dest: "{{ destination_directory }}"
-        mode: pull
-      #delegate_to: "{{ destination_server }}"
-      #when: file_to_check.stat.exists is defined and file_to_check.stat.exists
