@@ -17,7 +17,7 @@
 
     - name: Transfer file from ServerA to ServerB
       ansible.posix.synchronize:
-        mode: pull
+        #mode: pull
         src: "{{ source_file }}"
         dest: "{{ destination_directory }}"
       delegate_to: "{{ destination_server }}"
