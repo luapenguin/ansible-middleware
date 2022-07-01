@@ -21,8 +21,8 @@
       ansible.posix.synchronize:
         mode: pull
         ##src: "{{ source_path }}"
-        src: rsync://"{{ destination_user }}"@"{{ destination_server }}":"{{ destination_path }}"
+        src: rsync://"{{ destination_user }}"@"{{ destination_server }}":"{{ source_path }}"
         dest: "{{ destination_path }}"
         ##dest: rsync://"{{ destination_user }}"@"{{ destination_server }}":"{{ destination_path }}"
-      ##delegate_to: "{{ destination_server }}"
+      delegate_to: "{{ destination_server }}"
       #when: file_to_check.stat.exists is defined and file_to_check.stat.exists
