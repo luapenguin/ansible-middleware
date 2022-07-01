@@ -1,0 +1,33 @@
+---
+- name: AlmaLinux Server Ansible Playbook Execution
+  hosts: all
+  gather_facts: False
+  vars:
+    ansible_python_interpreter: /usr/bin/python3.9
+  tasks:
+    - name: Check if the file exists
+      ansible.builtin.stat:
+        path: "{{ source_file }}"
+      register: file_to_check
+
+    - name: Task name
+      debug:
+        msg: "The file or file exists"
+      when: file_to_check.stat.exists is defined and file_to_check.stat.exists
+
+    - name: Transfer file from ServerA to ServerB
+      hosts: "{{ destination_server }}"
+      remote_user: "{{ destination_user }}"
+      become: true
+      become_method: sudo
+      become_user: root
+      gather_facts: false
+      vars:
+        password: "{{ destination_user_password }}"
+        #ansible_sudo_pass: "{{ destination_user_password }}"
+      ansible.posix.synchronize:
+        src: "{{ source_file }}"
+        dest: "{{ destination_directory }}"
+        mode: pull
+      delegate_to: "{{ destination_server }}"
+      #when: file_to_check.stat.exists is defined and file_to_check.stat.exists
