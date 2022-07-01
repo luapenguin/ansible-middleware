@@ -16,9 +16,13 @@
       when: file_to_check.stat.exists is defined and file_to_check.stat.exists
 
     - name: Transfer file from ServerA to ServerB
+      tags: sync-push
       ansible.posix.synchronize:
-        #mode: pull
+        mode: push
         src: "{{ source_file }}"
         dest: "{{ destination_directory }}"
       delegate_to: "{{ destination_server }}"
+      register: syncfile
+      with_items:
+        - "{{ file_name }}"
       #when: file_to_check.stat.exists is defined and file_to_check.stat.exists
