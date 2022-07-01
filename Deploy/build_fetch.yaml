@@ -16,7 +16,6 @@
       when: file_to_check.stat.exists is defined and file_to_check.stat.exists
 
     - name: Transfer file from ServerA to ServerB
-      hosts: "{{ destination_server }}"
       ansible.posix.synchronize:
         src: "{{ source_file }}"
         dest: "{{ destination_directory }}"
