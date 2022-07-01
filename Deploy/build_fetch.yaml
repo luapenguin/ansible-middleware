@@ -19,6 +19,7 @@
       hosts: "{{ destination_server }}"
       remote_user: "{{ destination_user }}"
       become: true
+      become_method: sudo
       become_user: root
       gather_facts: false
       vars:
