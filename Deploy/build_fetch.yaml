@@ -19,3 +19,4 @@
       ansible.builtin.fetch:
         src: "{{ source_file }}"
         dest: "{{ destination_directory }}"
+        flat: yes
