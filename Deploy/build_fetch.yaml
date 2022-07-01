@@ -4,9 +4,6 @@
   gather_facts: False
   vars:
     ansible_python_interpreter: /usr/bin/python3.9
-    ansible_user: {{ destination_user }}
-    ansible_password: {{ destination_user_password }}
-    ansible_become_password: {{ destination_user_password }}
   tasks:
     - name: Check if the file exists
       ansible.builtin.stat:
