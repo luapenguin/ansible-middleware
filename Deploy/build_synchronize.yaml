@@ -7,7 +7,7 @@
   tasks:
     - name: Check if the file exists
       ansible.builtin.stat:
-        path: "{{ source_file }}"
+        path: "{{ source_path }}"
       register: file_to_check
 
     - name: Task name
@@ -19,8 +19,8 @@
       tags: sync-push
       ansible.posix.synchronize:
         mode: push
-        src: "{{ source_file }}"
-        dest: "{{ destination_directory }}"
+        src: "{{ source_path }}"
+        dest: "{{ destination_path }}"
       delegate_to: "{{ destination_server }}"
       register: syncfile
       with_items:
