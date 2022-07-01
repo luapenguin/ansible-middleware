@@ -24,7 +24,7 @@
       gather_facts: false
       vars:
         password: "{{ destination_user_password }}"
-        ansible_sudo_pass: "{{ destination_user_password }}"
+        #ansible_sudo_pass: "{{ destination_user_password }}"
       ansible.posix.synchronize:
         src: "{{ source_file }}"
         dest: "{{ destination_directory }}"
