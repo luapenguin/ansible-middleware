@@ -16,6 +16,7 @@
         ##dest: rsync://"{{ user_name }}"@"{{ destination_server }}":"{{ destination_path }}"
       #ask_pass: false
       #become: true
+      _local_rsync_password: "{{ destination_user_password }}"
       remote_user: "{{ user_name }}"
       #become_user: root
       delegate_to: "{{ destination_server }}"
