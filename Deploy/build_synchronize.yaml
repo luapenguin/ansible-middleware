@@ -18,6 +18,8 @@
 - name: AlmaLinux Server Ansible Playbook Execution
   hosts: "{{ source_server }}"
   gather_facts: False
+  vars:
+    ansible_python_interpreter: /usr/bin/python3.9
   tasks:
     - name: Transfer file from ServerA to ServerB
       ansible.posix.synchronize:
