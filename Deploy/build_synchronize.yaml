@@ -21,7 +21,8 @@
         RSYNC_PASSWORD: "{{ destination_user_password }}"
       ansible.posix.synchronize:
         mode: pull
-        #src: "{{ source_path }}"
-        src: rsync://"{{ user_name }}"@"{{ source_server }}":"{{ source_path }}"
-        dest: "{{ destination_path }}"
+        src: "{{ source_path }}"
+        #src: rsync://"{{ user_name }}"@"{{ source_server }}":"{{ source_path }}"
+        #dest: "{{ destination_path }}"
+        src: rsync://"{{ user_name }}"@"{{ source_server }}":"{{ destination_path }}"
       delegate_to: "{{ destination_server }}"
