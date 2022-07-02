@@ -8,7 +8,7 @@
     - name: Check if the file exists
       ansible.builtin.stat:
         path: "{{ source_path }}"
-      register: file_to_check
+      register: filestatus
 
     - name: Transfer file from ServerA to ServerB
       tags: sync-pull
@@ -19,8 +19,8 @@
         mode: pull
       delegate_to: "{{ destination_server }}"
       register: syncfile
-      when: file_to_check.stat.exists
+      when: filestatus.stat.exists
       
-   - name: Debug syncfile
-     debug:
-       msg: "{{ syncfile.changed }}"
+    - name: Debug syncfile
+      debug:
+        msg: "{{ syncfile.changed }}"
