@@ -16,7 +16,7 @@
       synchronize:
         src: "{{ source_path }}"
         dest: "{{ destination_path }}"
-        mode: pull
+        mode: push
       delegate_to: "{{ destination_server }}"
       register: syncfile
       when: filestatus.stat.exists
