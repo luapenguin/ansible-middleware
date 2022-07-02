@@ -7,18 +7,19 @@
   tasks:
     - name: Transfer file from ServerA to ServerB
       ##environment:
-        ##RSYNC_PASSWORD: "{{ destination_user_password }}"
+      vars:
+        RSYNC_PASSWORD: "{{ destination_user_password }}"
       ansible.posix.synchronize:
         mode: pull
-        src: "{{ source_path }}"
-        ##src: rsync://"{{ user_name }}"@"{{ source_server }}":"{{ source_path }}"
+        ##src: "{{ source_path }}"
+        src: rsync://"{{ user_name }}"@"{{ source_server }}":"{{ source_path }}"
         dest: "{{ destination_path }}"
         ##dest: rsync://"{{ user_name }}"@"{{ destination_server }}":"{{ destination_path }}"
-      rsync_opts:
-        - '--password-file="{{ destination_user_password }}"'
+      #rsync_opts:
+        #- '--password-file="{{ destination_user_password }}"'
       #ask_pass: false
       #become: true
-      remote_user: "{{ user_name }}"
+      #remote_user: "{{ user_name }}"
       #become_user: root
       delegate_to: "{{ destination_server }}"
       #when: file_to_check.stat.exists is defined and file_to_check.stat.exists
