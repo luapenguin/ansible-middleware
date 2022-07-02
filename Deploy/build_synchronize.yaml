@@ -5,14 +5,12 @@
   vars:
     ansible_python_interpreter: /usr/bin/python3.9
   tasks:
-    - name: Transfer file from ServerA to ServerB
-      environment:
-        RSYNC_PASSWORD: "{{ destination_user_password }}"
-      ansible.posix.synchronize:
-        mode: pull
-        src: rsync://"{{ user_name }}"@"{{ source_server }}":"{{ source_path }}"
-        dest: "{{ destination_path }}"
-      #rsync_opts:
-        #- '--password-file="{{ destination_user_password }}"'
-      delegate_to: "{{ destination_server }}"
-      #when: file_to_check.stat.exists is defined and file_to_check.stat.exists
+    - name: Check if the file exists
+      ansible.builtin.stat:
+        path: "{{ source_file }}"
+      register: file_to_check
+
+    - name: Task name
+      debug:
+        msg: "The file or file exists"
+      when: file_to_check.stat.exists is defined and file_to_check.stat.exists
