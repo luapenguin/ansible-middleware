@@ -5,10 +5,10 @@
   vars:
     ansible_python_interpreter: /usr/bin/python3.9
   tasks:
-    - name: Check if the file exists
-      ansible.builtin.stat:
-        path: "{{ source_path }}"
-      register: filestatus
+    #- name: Check if the file exists
+      #ansible.builtin.stat:
+        #path: "{{ source_path }}"
+      #register: filestatus
 
     - name: Transfer file from ServerA to ServerB
       tags: sync-push
@@ -21,6 +21,6 @@
       register: syncfile
       when: filestatus.stat.exists
       
-    - name: Debug syncfile
-      debug:
-        msg: "{{ syncfile.changed }}"
+    #- name: Debug syncfile
+      #debug:
+        #msg: "{{ syncfile.changed }}"
