@@ -20,6 +20,6 @@
         src: "{{ source_path }}"
         dest: "{{ destination_path }}"
         mode: pull
-        #rsync_opts:
-          #- "ssh -C -o PasswordAuthentication=yes"
+        rsync_opts:
+          - "ssh -C -o PasswordAuthentication=yes"
       delegate_to: "{{ destination_server }}"
