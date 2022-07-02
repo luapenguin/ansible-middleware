@@ -20,7 +20,8 @@
       synchronize:
         src: "{{ source_path }}"
         dest: "{{ destination_path }}"
-        mode: pull
+        #mode: pull
         #rsync_opts:
           #- "ssh -C -o PasswordAuthentication=yes"
-      delegate_to: "{{ destination_server }}"
+      delegate_to: "{{ source_server }}"
+      #delegate_to: "{{ destination_server }}"
