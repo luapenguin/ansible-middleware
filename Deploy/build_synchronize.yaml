@@ -1,6 +1,6 @@
 ---
 - name: AlmaLinux Server Ansible Playbook Execution
-  hosts: "{{ source_server }}"
+  hosts: {{ source_server }}
   #hosts: all
   gather_facts: False
   vars:
