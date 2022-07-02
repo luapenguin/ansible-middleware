@@ -18,8 +18,8 @@
         dest: "{{ destination_path }}"
         mode: push
       delegate_to: "{{ destination_server }}"
-      register: syncfile
-      when: filestatus.stat.exists
+      #register: syncfile
+      #when: filestatus.stat.exists
       
     #- name: Debug syncfile
       #debug:
