@@ -4,11 +4,12 @@
   gather_facts: False
   vars:
     ansible_python_interpreter: /usr/bin/python3.9
+    RSYNC_PASSWORD: "{{ destination_user_password }}"
   tasks:
     - name: Transfer file from ServerA to ServerB
       ##environment:
-      vars:
-        RSYNC_PASSWORD: "{{ destination_user_password }}"
+      #vars:
+        #RSYNC_PASSWORD: "{{ destination_user_password }}"
       ansible.posix.synchronize:
         mode: pull
         ##src: "{{ source_path }}"
