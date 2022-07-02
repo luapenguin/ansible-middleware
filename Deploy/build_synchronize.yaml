@@ -18,7 +18,6 @@
         dest: "{{ destination_path }}"
         mode: push
       delegate_to: "{{ destination_server }}"
-      gather_facts: False
       register: syncfile
       when: filestatus.stat.exists
       
