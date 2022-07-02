@@ -1,7 +1,6 @@
 ---
 - name: AlmaLinux Server Ansible Playbook Execution
-  hosts: {{ source_server }}
-  #hosts: all
+  hosts: all
   gather_facts: False
   vars:
     ansible_python_interpreter: /usr/bin/python3.9
