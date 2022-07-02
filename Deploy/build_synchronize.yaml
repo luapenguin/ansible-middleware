@@ -31,7 +31,5 @@
         dest: "{{ destination_path }}"
         #dest: rsync://"{{ user_name }}"@"{{ destination_server }}":"{{ destination_path }}"
         mode: pull
-        rsync_opts:
-          - "-e ssh -o PreferredAuthentications=publickey"
       #delegate_to: "{{ source_server }}"
       delegate_to: "{{ destination_server }}"
