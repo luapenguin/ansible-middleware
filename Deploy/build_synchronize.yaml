@@ -7,9 +7,9 @@
     RSYNC_PASSWORD: "{{ destination_user_password }}"
   tasks:
     - name: Transfer file from ServerA to ServerB
-      ##environment:
+      environment:
       #vars:
-        #RSYNC_PASSWORD: "{{ destination_user_password }}"
+        RSYNC_PASSWORD: "{{ destination_user_password }}"
       ansible.posix.synchronize:
         ##mode: pull
         ##src: "{{ source_path }}"
