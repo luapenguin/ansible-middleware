@@ -1,0 +1,27 @@
+---
+- name: Sync Push task - Executed on source host server1
+  hosts: all
+  gather_facts: false
+  vars:
+    ansible_python_interpreter: /usr/bin/python3.9
+  tasks:
+    - name: Check if the file exists
+      ansible.builtin.stat:
+        path: "{{ source_path }}"
+      register: filestatus
+  
+    - name: Ansible copy the file from server1 to system1 using Method Push
+      tags: sync-push
+      synchronize:
+        src: "/opt/jboss-eap-5.1/jboss-as/server/desarrollo/PASE-A-PRODUCCION/lotto-mobile.war"
+        dest: "/Pases/lotto-mobile.war"
+        mode: push
+      delegate_to: server1
+      vars:
+        ansible_python_interpreter: /usr/bin/python3.9
+      register: syncfile
+      when: filestatus.stat.exists
+      
+    - name: Debug syncfile
+      debug:
+        msg: "{{ syncfile.changed }}"
