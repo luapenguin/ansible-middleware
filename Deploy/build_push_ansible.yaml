@@ -1,5 +1,5 @@
 ---
-- name: Sync Push task - Executed on source host server1
+- name: Sync Push task - Executed on source host "{{ servidor_destino }}"
   hosts: all
   gather_facts: false
   vars:
@@ -10,13 +10,13 @@
         path: "{{ ruta_origen }}"
       register: filestatus
   
-    - name: Ansible copy the file from server1 to system1 using Method Push
+    - name: Ansible copy the file from "{{ servidor_origen }}" to "{{ servidor_destino }}" using Method Push
       tags: sync-push
       synchronize:
         src: "{{ ruta_origen }}"
         dest: "{{ ruta_destino }}"
         mode: push
-      delegate_to: server1
+      delegate_to: "{{ servidor_destino }}"
       vars:
         ansible_python_interpreter: /usr/bin/python3.9
       register: syncfile
