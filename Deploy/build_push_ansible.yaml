@@ -7,14 +7,14 @@
   tasks:
     - name: Check if the file exists
       ansible.builtin.stat:
-        path: "{{ source_path }}"
+        path: "{{ ruta_origen }}"
       register: filestatus
   
     - name: Ansible copy the file from server1 to system1 using Method Push
       tags: sync-push
       synchronize:
-        src: "/opt/jboss-eap-5.1/jboss-as/server/desarrollo/PASE-A-PRODUCCION/lotto-mobile.war"
-        dest: "/Pases/lotto-mobile.war"
+        src: "{{ ruta_origen }}"
+        dest: "{{ ruta_destino }}"
         mode: push
       delegate_to: server1
       vars:
