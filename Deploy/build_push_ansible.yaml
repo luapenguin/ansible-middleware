@@ -11,11 +11,11 @@
       register: filestatus
   
     - name: Ansible copy the file from {{ servidor_origen }} to {{ servidor_destino }} using Method Push
-      tags: sync-push
+      tags: sync-pull
       synchronize:
         src: "{{ ruta_origen }}"
         dest: "{{ ruta_destino }}"
-        mode: push
+        mode: pull
       delegate_to: "{{ servidor_destino }}"
       vars:
         ansible_python_interpreter: /usr/bin/python3.9
