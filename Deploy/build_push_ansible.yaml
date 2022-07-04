@@ -1,5 +1,5 @@
 ---
-- name: Sync Push task - Executed on source host "{{ servidor_destino }}"
+- name: Sync Push task - Executed on source host {{ servidor_destino }}
   hosts: all
   gather_facts: false
   vars:
@@ -10,7 +10,7 @@
         path: "{{ ruta_origen }}"
       register: filestatus
   
-    - name: Ansible copy the file from "{{ servidor_origen }}" to "{{ servidor_destino }}" using Method Push
+    - name: Ansible copy the file from {{ servidor_origen }} to {{ servidor_destino }} using Method Push
       tags: sync-push
       synchronize:
         src: "{{ ruta_origen }}"
