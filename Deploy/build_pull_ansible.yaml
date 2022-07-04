@@ -11,7 +11,7 @@
       register: filestatus
 
     #- name: Check if {{ ruta_origen }} file exists.
-     - fail:
+    - fail:
         msg: "{{ ruta_origen }} is NOT a file."
       when: filestatus.stat.isdir
 
