@@ -12,7 +12,7 @@
 
     - name: Check if {{ ruta_origen }} file exists.
       debug:
-        msg: {{ ruta_origen }} is NOT a file.
+        msg: "{{ ruta_origen }}" is NOT a file.
       failed_when: filestatus.stat.isdir
 
     - name: Ansible copy the file from {{ servidor_origen }} to {{ servidor_destino }} using Method Push
