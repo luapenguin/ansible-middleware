@@ -1,5 +1,5 @@
 ---
-- name: Sync Push task - Executed on source host {{ servidor_destino }}
+- name: Sync Push task - Executed on destination host {{ servidor_destino }}
   hosts: all
   gather_facts: false
   vars:
