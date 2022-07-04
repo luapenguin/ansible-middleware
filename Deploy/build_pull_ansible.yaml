@@ -20,7 +20,7 @@
       vars:
         ansible_python_interpreter: /usr/bin/python3.6
       register: syncfile
-      ##when: filestatus.stat.exists is defined and filestatus.stat.isreg
+      when: filestatus.stat.exists is defined and filestatus.stat.isreg
       failed_when: filestatus.stat.isdir
       
     - name: Debug syncfile
