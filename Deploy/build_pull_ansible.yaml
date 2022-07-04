@@ -5,11 +5,16 @@
   vars:
     ansible_python_interpreter: /usr/bin/python3.9
   tasks:
-    - name: Check if the file exists
+    - name: Preparing {{ ruta_origen }} file to be transferred.
       ansible.builtin.stat:
         path: "{{ ruta_origen }}"
       register: filestatus
-  
+
+    - name: Check if {{ ruta_origen }} file exists.
+      debug:
+        msg: {{ ruta_origen }} is NOT a file.
+      failed_when: filestatus.stat.isdir
+
     - name: Ansible copy the file from {{ servidor_origen }} to {{ servidor_destino }} using Method Push
       tags: sync-pull
       synchronize:
@@ -20,7 +25,6 @@
       vars:
         ansible_python_interpreter: /usr/bin/python3.6
       register: syncfile
-      failed_when: filestatus.stat.isdir
       when: filestatus.stat.exists is defined and filestatus.stat.isreg
       
     - name: Debug syncfile
