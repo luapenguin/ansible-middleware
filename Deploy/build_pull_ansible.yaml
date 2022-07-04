@@ -10,8 +10,8 @@
         path: "{{ ruta_origen }}"
       register: filestatus
 
-    - name: Check if {{ ruta_origen }} file exists.
-      fail:
+    #- name: Check if {{ ruta_origen }} file exists.
+     - fail:
         msg: "{{ ruta_origen }} is NOT a file."
       when: filestatus.stat.isdir
 
