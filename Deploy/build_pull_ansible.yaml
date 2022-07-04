@@ -13,7 +13,7 @@
     #- name: Check if {{ ruta_origen }} file exists.
     - fail:
         msg: The object to be transferred should be a file.
-      when: filestatus.stat.isdir and filestatus.stat.exists
+      when: filestatus.stat.isdir and not filestatus.stat.exists
 
     - name: Transferring file from {{ servidor_origen }} to {{ servidor_destino }} using Method Pull
       tags: sync-pull
