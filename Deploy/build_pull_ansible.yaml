@@ -21,7 +21,7 @@
         ansible_python_interpreter: /usr/bin/python3.6
       register: syncfile
       ##when: filestatus.stat.exists is defined and filestatus.stat.isreg
-      when: filestatus.stat.exists != 0 and filestatus.stat.isreg != 0
+      when: filestatus.stat.exists != 1 and filestatus.stat.isreg != 1
       
     - name: Debug syncfile
       debug:
