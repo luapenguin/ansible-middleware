@@ -12,7 +12,7 @@
 
     #- name: Check if {{ ruta_origen }} file exists.
     - fail:
-        msg: The object to be transferred should be a file."
+        msg: The object to be transferred should be a file.
       when: filestatus.stat.isdir
 
     - name: Ansible copy the file from {{ servidor_origen }} to {{ servidor_destino }} using Method Push
