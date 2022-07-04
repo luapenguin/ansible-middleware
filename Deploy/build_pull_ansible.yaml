@@ -3,10 +3,7 @@
   hosts: all
   gather_facts: false
   vars:
-    #ansible_python_interpreter: /usr/bin/python3.9
     ansible_python_interpreter: /usr/bin/python2.6
-    ansible_ssh_password: "123456"
-    RSYNC_PASSWORD: "123456"
   tasks:
     - name: Preparing {{ ruta_origen }} file to be transferred.
       ansible.builtin.stat:
@@ -29,9 +26,7 @@
         mode: pull
       delegate_to: "{{ servidor_destino }}"
       vars:
-        ansible_python_interpreter: /usr/bin/python3.6
-        ansible_ssh_password: "123456"
-        RSYNC_PASSWORD: "123456"
+        ansible_python_interpreter: /usr/bin/python2.6
       register: syncfile
       when: filestatus.stat.isreg and filestatus.stat.exists is defined
       
