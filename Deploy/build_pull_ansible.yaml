@@ -10,15 +10,13 @@
         path: "{{ ruta_origen }}"
       register: filestatus
 
-    #- fail:
-        #msg: The object to be transferred WAS NOT FOUND.
-      #when: not filestatus.stat.exists
+    - fail:
+        msg: The object to be transferred WAS NOT FOUND.
+      when: not filestatus.stat.exists
 
     - fail:
         msg: The object to be transferred SHOULD BE A FILE.
-      when: 
-        - not filestatus.stat.exists
-        - filestatus.stat.isdir
+      when: filestatus.stat.isdir
 
     - name: Transferring file from {{ servidor_origen }} to {{ servidor_destino }} using Method Pull
       tags: sync-pull
