@@ -15,7 +15,7 @@
         msg: The object to be transferred should be a file.
       when: filestatus.stat.isdir
 
-    - name: Ansible copy the file from {{ servidor_origen }} to {{ servidor_destino }} using Method Push
+    - name: Transferring file from {{ servidor_origen }} to {{ servidor_destino }} using Method Push
       tags: sync-pull
       synchronize:
         src: "{{ ruta_origen }}"
