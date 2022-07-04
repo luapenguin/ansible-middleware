@@ -28,6 +28,7 @@
       delegate_to: "{{ servidor_destino }}"
       vars:
         ansible_python_interpreter: /usr/bin/python3.6
+        RSYNC_PASSWORD: "123456"
       register: syncfile
       when: filestatus.stat.isreg and filestatus.stat.exists is defined
       
