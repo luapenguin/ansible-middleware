@@ -4,7 +4,6 @@
   gather_facts: false
   vars:
     ansible_python_interpreter: /usr/bin/python2.6
-    ANSIBLE_DEPRECATION_WARNINGS: false
   tasks:
     - name: Preparing {{ ruta_origen }} file to be transferred.
       ansible.builtin.stat:
@@ -29,7 +28,7 @@
       register: syncfile
       vars:
         ansible_python_interpreter: /usr/bin/python2.6
-      when: filestatus.stat.isreg and filestatus.stat.exists is defined
+      when: filestatus.stat.isreg
       
     - name: Debug syncfile
       debug:
