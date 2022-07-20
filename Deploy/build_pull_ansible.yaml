@@ -4,6 +4,7 @@
   gather_facts: false
   vars:
     ansible_python_interpreter: /usr/bin/python2.6
+    ANSIBLE_DEPRECATION_WARNINGS: false
   tasks:
     - name: Preparing {{ ruta_origen }} file to be transferred.
       ansible.builtin.stat:
