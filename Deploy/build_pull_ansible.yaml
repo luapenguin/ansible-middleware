@@ -7,7 +7,7 @@
   tasks:
     - name: Preparing {{ ruta_origen }} file to be transferred.
       ansible.builtin.stat:
-        path: "{{ ruta_origen }}"
+        path: "{{ ruta_origen }}{{ nombre_archivo }}"
       register: filestatus
 
     - fail:
