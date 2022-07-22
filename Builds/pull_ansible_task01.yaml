@@ -15,7 +15,7 @@
       delegate_to: "{{ servidor_destino }}"
       register: syncfile
       vars:
-        ansible_python_interpreter: "{{ binario_python }}"
+        ansible_python_interpreter: "{{ ruta_python }}"
       with_items:
         - "{{ nombre_archivo }}"
       
