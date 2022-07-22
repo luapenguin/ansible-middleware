@@ -1,13 +1,13 @@
 ---
-- name: Sync Pull task - Executed on destination host system9
-  hosts: system7
+- name: Sync Pull task - Executed on destination host {{ servidor_destino }}
+  hosts: all
   gather_facts: false
   vars:
     ansible_python_interpreter: /usr/bin/python2.6
   tasks:
-    - name: Preparing lotto-mobile.war file to be transferred.
+    - name: Preparing {{ ruta_origen }} file to be transferred.
       ansible.builtin.stat:
-        path: "/opt/jboss-eap-5.1/jboss-as/server/desarrollo/PASE-A-PRODUCCION/lotto-mobile.war"
+        path: "{{ ruta_origen }}"
       register: filestatus
 
     - fail:
@@ -18,13 +18,13 @@
         msg: The object to be transferred should be a file.
       when: filestatus.stat.isdir
 
-    - name: Transferring file from system7 to system9 using method pull
+    - name: Transferring file from {{ servidor_origen }} to {{ servidor_destino }} using method pull
       tags: sync-pull
       synchronize:
-        src: "/opt/jboss-eap-5.1/jboss-as/server/desarrollo/PASE-A-PRODUCCION/lotto-mobile.war"
-        dest: "/Pases/"
+        src: "{{ ruta_origen }}"
+        dest: "{{ ruta_destino }}"
         mode: pull
-      delegate_to: system9
+      delegate_to: "{{ servidor_destino }}"
       register: syncfile
       vars:
         ansible_python_interpreter: /usr/bin/python2.6
