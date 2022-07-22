@@ -1,18 +1,18 @@
 ---
-- name: Sync Push task - Executed on destination host system7
-  hosts: system9
+- name: Sync Push task - Executed on destination host {{ servidor_origen }}
+  hosts: all
   gather_facts: false
   vars:
     ansible_python_interpreter: /usr/bin/python2.6
   tasks:
-    - name: Transferring file from system7 to system9 using method push
+    - name: Transferring file from {{ servidor_origen }} to {{ servidor_destino }} using method push
       tags: sync-push
       #synchronize:
       ansible.posix.synchronize:
         src: "/opt/jboss-eap-5.1/jboss-as/server/desarrollo/PASE-A-PRODUCCION/{{ item }}"
         dest: /Pases/
         mode: push
-      delegate_to: system7
+      delegate_to: {{ servidor_origen }}
       register: syncfile
       vars:
         ansible_python_interpreter: /usr/bin/python2.6
