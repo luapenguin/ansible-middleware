@@ -1,0 +1,35 @@
+---
+- name: Sync Pull task - Executed on destination host system9
+  hosts: system7
+  gather_facts: false
+  vars:
+    ansible_python_interpreter: /usr/bin/python2.6
+  tasks:
+    - name: Preparing lotto-mobile.war file to be transferred.
+      ansible.builtin.stat:
+        path: "/opt/jboss-eap-5.1/jboss-as/server/desarrollo/PASE-A-PRODUCCION/lotto-mobile.war"
+      register: filestatus
+
+    - fail:
+        msg: The object to be transferred was NOT found.
+      when: not filestatus.stat.exists
+
+    - fail:
+        msg: The object to be transferred should be a file.
+      when: filestatus.stat.isdir
+
+    - name: Transferring file from system7 to system9 using method pull
+      tags: sync-pull
+      synchronize:
+        src: "/opt/jboss-eap-5.1/jboss-as/server/desarrollo/PASE-A-PRODUCCION/lotto-mobile.war"
+        dest: "/Pases/"
+        mode: pull
+      delegate_to: system9
+      register: syncfile
+      vars:
+        ansible_python_interpreter: /usr/bin/python2.6
+      when: filestatus.stat.isreg
+      
+    - name: Debug syncfile, changed?
+      debug:
+        msg: "{{ syncfile.changed }}"
