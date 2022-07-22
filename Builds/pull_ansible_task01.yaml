@@ -9,8 +9,8 @@
       tags: sync-pull
       #synchronize:
       ansible.posix.synchronize:
-        src: "/opt/jboss-eap-5.1/jboss-as/server/desarrollo/PASE-A-PRODUCCION/{{ item }}"
-        dest: /Pases/
+        src: "{{ ruta_origen }}/{{ item }}"
+        dest: "{{ ruta_destino }}"
         mode: pull
       delegate_to: "{{ servidor_destino }}"
       register: syncfile
