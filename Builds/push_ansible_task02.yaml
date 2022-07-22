@@ -7,7 +7,8 @@
   tasks:
     - name: Transferring file from {{ servidor_origen }} to {{ servidor_destino }} using method push
       tags: sync-push
-      synchronize:
+      #synchronize:
+      ansible.posix.synchronize:
         src:  "{{ ruta_origen }}"
         dest: "{{ ruta_destino }}"
         mode: push
