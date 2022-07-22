@@ -7,21 +7,21 @@
   tasks:
     - name: Preparing {{ ruta_origen }} file to be transferred.
       ansible.builtin.stat:
-        path: "{{ ruta_origen }}{{ nombre_archivo }}"
+        path: "{{ ruta_origen }}"
       register: filestatus
 
     - fail:
-        msg: The object to be transferred WAS NOT FOUND.
+        msg: The object to be transferred was NOT found.
       when: not filestatus.stat.exists
 
     - fail:
-        msg: The object to be transferred SHOULD BE A FILE.
+        msg: The object to be transferred should be a file.
       when: filestatus.stat.isdir
 
-    - name: Transferring file from {{ servidor_origen }} to {{ servidor_destino }} using Method Pull
+    - name: Transferring file from {{ servidor_origen }} to {{ servidor_destino }} using method pull
       tags: sync-pull
       synchronize:
-        src: "{{ ruta_origen }}"
+        src: "{{ ruta_origen }}{{ nombre_archivo }}"
         dest: "{{ ruta_destino }}"
         mode: pull
       delegate_to: "{{ servidor_destino }}"
@@ -30,6 +30,6 @@
         ansible_python_interpreter: /usr/bin/python2.6
       when: filestatus.stat.isreg
       
-    - name: Debug syncfile
+    - name: Debug syncfile, changed?
       debug:
         msg: "{{ syncfile.changed }}"
