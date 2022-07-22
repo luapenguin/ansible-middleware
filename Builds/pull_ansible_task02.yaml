@@ -3,7 +3,7 @@
   hosts: all
   gather_facts: false
   vars:
-    ansible_python_interpreter: /usr/bin/python2.6
+    ansible_python_interpreter: "{{ ruta_python }}"
   tasks:
     - name: Preparing {{ ruta_origen }} file to be transferred.
       ansible.builtin.stat:
@@ -28,7 +28,7 @@
       delegate_to: "{{ servidor_destino }}"
       register: syncfile
       vars:
-        ansible_python_interpreter: /usr/bin/python2.6
+        ansible_python_interpreter: "{{ ruta_python }}"
       when: filestatus.stat.isreg
       
     - name: Debug syncfile, changed?
