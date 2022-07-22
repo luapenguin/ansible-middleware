@@ -10,7 +10,7 @@
       #synchronize:
       ansible.posix.synchronize:
         src: "{{ ruta_origen }}/{{ item }}"
-        dest: "{{ ruta_destino }}
+        dest: "{{ ruta_destino }}"
         mode: push
       delegate_to: "{{ servidor_origen }}"
       register: syncfile
