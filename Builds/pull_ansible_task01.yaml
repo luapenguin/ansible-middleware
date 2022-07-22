@@ -17,8 +17,7 @@
       vars:
         ansible_python_interpreter: /usr/bin/python2.6
       with_items:
-        - "lotto-mobile.war"
-        - "lotto-sale.war"
+        - "{{ nombre_archivo }}"
       
     - name: Debug syncfile, changed?
       debug:
