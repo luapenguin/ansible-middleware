@@ -1,0 +1,21 @@
+---
+- name: Sync Push task - Executed on destination host system7
+  hosts: system9
+  gather_facts: false
+  vars:
+    ansible_python_interpreter: /usr/bin/python2.6
+  tasks:
+    - name: Transferring file from system7 to system9 using method push
+      tags: sync-push
+      synchronize:
+        src: "/opt/jboss-eap-5.1/jboss-as/server/desarrollo/PASE-A-PRODUCCION/lotto-mobile.war"
+        dest: "/Pases/"
+        mode: push
+      delegate_to: system7
+      register: syncfile
+      vars:
+        ansible_python_interpreter: /usr/bin/python2.6
+      
+    - name: Debug syncfile, changed?
+      debug:
+        msg: "{{ syncfile.changed }}"
