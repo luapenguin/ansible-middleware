@@ -9,16 +9,15 @@
       tags: sync-push
       #synchronize:
       ansible.posix.synchronize:
-        src: "/opt/jboss-eap-5.1/jboss-as/server/desarrollo/PASE-A-PRODUCCION/{{ item }}"
-        dest: /Pases/
+        src: "{{ ruta_origen }}/{{ item }}"
+        dest: "{{ ruta_destino }}
         mode: push
       delegate_to: {{ servidor_origen }}
       register: syncfile
       vars:
         ansible_python_interpreter: /usr/bin/python2.6
       with_items:
-        - "lotto-mobile.war"
-        - "lotto-sale.war"
+        - "{{ nombre_archivo }}"
       
     - name: Debug syncfile, changed?
       debug:
