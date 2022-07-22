@@ -3,7 +3,7 @@
   hosts: all
   gather_facts: false
   vars:
-    ansible_python_interpreter: /usr/bin/python2.6
+    ansible_python_interpreter: "{{ binario_python }}"
   tasks:
     - name: Transferring file from "{{ servidor_origen }}" to "{{ servidor_destino }}" using method pull
       tags: sync-pull
@@ -15,7 +15,7 @@
       delegate_to: "{{ servidor_destino }}"
       register: syncfile
       vars:
-        ansible_python_interpreter: /usr/bin/python2.6
+        ansible_python_interpreter: "{{ binario_python }}"
       with_items:
         - "{{ nombre_archivo }}"
       
