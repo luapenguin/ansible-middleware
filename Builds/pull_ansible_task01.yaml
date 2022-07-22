@@ -1,0 +1,25 @@
+---
+- name: Sync Pull task - Executed on destination host "{{ servidor_destino }}"
+  hosts: all
+  gather_facts: false
+  vars:
+    ansible_python_interpreter: /usr/bin/python2.6
+  tasks:
+    - name: Transferring file from "{{ servidor_origen }}" to "{{ servidor_destino }}" using method pull
+      tags: sync-pull
+      #synchronize:
+      ansible.posix.synchronize:
+        src: "/opt/jboss-eap-5.1/jboss-as/server/desarrollo/PASE-A-PRODUCCION/{{ item }}"
+        dest: /Pases/
+        mode: pull
+      delegate_to: "{{ servidor_destino }}"
+      register: syncfile
+      vars:
+        ansible_python_interpreter: /usr/bin/python2.6
+      with_items:
+        - "lotto-mobile.war"
+        - "lotto-sale.war"
+      
+    - name: Debug syncfile, changed?
+      debug:
+        msg: "{{ syncfile.changed }}"
