@@ -21,7 +21,7 @@
     - name: Transferring file from {{ servidor_origen }} to {{ servidor_destino }} using method pull
       tags: sync-pull
       synchronize:
-        src: "{{ ruta_origen }}""{{ nombre_archivo }}"
+        src: '"{{ ruta_origen }}""{{ nombre_archivo }}"'
         dest: "{{ ruta_destino }}"
         mode: pull
       delegate_to: "{{ servidor_destino }}"
