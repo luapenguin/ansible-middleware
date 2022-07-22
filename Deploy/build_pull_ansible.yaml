@@ -14,14 +14,14 @@
         msg: The object to be transferred was NOT found.
       when: not filestatus.stat.exists
 
-    #- fail:
-    #    msg: The object to be transferred should be a file.
-    #  when: filestatus.stat.isdir
+    - fail:
+        msg: The object to be transferred should be a file.
+      when: filestatus.stat.isdir
 
     - name: Transferring file from {{ servidor_origen }} to {{ servidor_destino }} using method pull
       tags: sync-pull
       synchronize:
-        src: '"{{ ruta_origen }}""{{ nombre_archivo }}"'
+        src: "{{ ruta_origen }}"
         dest: "{{ ruta_destino }}"
         mode: pull
       delegate_to: "{{ servidor_destino }}"
