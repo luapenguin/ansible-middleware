@@ -3,7 +3,7 @@
   hosts: all
   gather_facts: false
   vars:
-    ansible_python_interpreter: "{{ binario_python }}"
+    ansible_python_interpreter: "{{ ruta_python }}"
   tasks:
     - name: Transferring file from "{{ servidor_origen }}" to "{{ servidor_destino }}" using method pull
       tags: sync-pull
