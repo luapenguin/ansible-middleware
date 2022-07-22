@@ -20,7 +20,8 @@
 
     - name: Transferring file from {{ servidor_origen }} to {{ servidor_destino }} using method pull
       tags: sync-pull
-      synchronize:
+      #synchronize:
+      ansible.posix.synchronize:
         src: "{{ ruta_origen }}"
         dest: "{{ ruta_destino }}"
         mode: pull
