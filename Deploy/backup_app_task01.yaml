@@ -8,12 +8,12 @@
     - name: Preparing {{ ruta_origen }} file to move.
       ansible.builtin.stat:
         path: "{{ ruta_origen }}"
-      register: filestatus
+      register: directorytatus
 
     - fail:
         msg: The object to be transferred was NOT found.
-      when: not filestatus.stat.exists
+      when: not directorytatus.stat.exists
 
     - fail:
         msg: The object to be transferred should be a file.
-      when: filestatus.stat.isdir
+      when: directorytatus.stat.isdir
