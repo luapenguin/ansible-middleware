@@ -5,3 +5,17 @@
   vars:
     ansible_python_interpreter: "{{ ruta_python }}"
   tasks:
+    - name: Preparing {{ ruta_origen }} file to be transferred.
+      ansible.builtin.stat:
+        path: "{{ ruta_origen }}"
+      register: filestatus
+
+    - fail:
+        msg: The object to be transferred was NOT found.
+      when: not filestatus.stat.exists
+
+    - fail:
+        msg: The object to be transferred should be a file.
+      when: filestatus.stat.isdir
+
+
