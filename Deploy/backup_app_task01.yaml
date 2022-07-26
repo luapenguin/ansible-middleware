@@ -1,5 +1,5 @@
 ---
-- name: Deploy App on server {{ servidor_destino }}
+- name: Backup App on server {{ servidor_destino }}
   hosts: all
   gather_facts: false
   vars:
