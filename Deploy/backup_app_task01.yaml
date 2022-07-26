@@ -1,1 +1,19 @@
 ---
+- name: Deploy App on server {{ servidor_destino }}
+  hosts: all
+  gather_facts: false
+  vars:
+    ansible_python_interpreter: "{{ ruta_python }}"
+  tasks:
+    - name: Preparing {{ ruta_origen }} file to move.
+      ansible.builtin.stat:
+        path: "{{ ruta_origen }}"
+      register: filestatus
+
+    - fail:
+        msg: The object to be transferred was NOT found.
+      when: not filestatus.stat.exists
+
+    - fail:
+        msg: The object to be transferred should be a file.
+      when: filestatus.stat.isdir
