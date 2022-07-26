@@ -5,7 +5,7 @@
   vars:
     ansible_python_interpreter: "{{ ruta_python }}"
   tasks:
-    - name: Preparing {{ ruta_origen }} file to move.
+    - name: Preparing {{ ruta_origen }} directory to backup.
       ansible.builtin.stat:
         path: "{{ ruta_origen }}"
       register: directorytatus
@@ -15,5 +15,5 @@
       when: not directorytatus.stat.exists
 
     - fail:
-        msg: The object to be transferred should be a file.
-      when: directorytatus.stat.isdir
+        msg: The object to be transferred should be a directory.
+      when: directorytatus.stat.isreg
